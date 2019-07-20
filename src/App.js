@@ -11,21 +11,10 @@ import MyCard from "./Card";
 import discount from "./discount.jpg";
 import sk from "@stormkit/api";
 
-function setCookie(name, value, days) {
-  var expires = "";
-
-  if (days) {
-    var date = new Date();
-    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-    expires = "; expires=" + date.toUTCString();
-  }
-
-  document.cookie = name + "=" + (value || "") + expires + "; path=/";
-}
-
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    background: "orange"
   },
   menuButton: {
     marginRight: theme.spacing(2)
@@ -85,18 +74,6 @@ export default function App() {
             Latest Items
           </Typography>
           <Button color="inherit">Login</Button>
-          {config.variant && (
-            <Button
-              variant="contained"
-              color="secondary"
-              className={classes.button}
-              onClick={() => {
-                setCookie("sk_variant", config.variant);
-              }}
-            >
-              Try out new version
-            </Button>
-          )}
         </Toolbar>
       </AppBar>
       <Container className={classes.container}>
