@@ -8,6 +8,7 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import MyCard from "./Card";
+import discount from "./discount.jpg";
 import sk from "@stormkit/api";
 
 const useStyles = makeStyles(theme => ({
@@ -27,6 +28,27 @@ const useStyles = makeStyles(theme => ({
     padding: "3rem 0",
     justifyContent: "space-between",
     flexWrap: "wrap"
+  },
+  promotionWrapper: {
+    width: "100%",
+    height: 350,
+    position: "relative",
+    marginBottom: "3rem",
+    textAlign: "right"
+  },
+  promotion: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    background: `url(${discount})`,
+    backgroundSize: "cover",
+    zIndex: -1
+  },
+  promotionText: {
+    color: "white",
+    padding: "1rem"
   }
 }));
 
@@ -54,6 +76,14 @@ export default function App() {
         </Toolbar>
       </AppBar>
       <Container className={classes.container}>
+        {config.promotion === "enabled" && (
+          <div className={classes.promotionWrapper}>
+            <Typography variant="h3" className={classes.promotionText}>
+              Sales
+            </Typography>
+            <div className={classes.promotion} />
+          </div>
+        )}
         {[...Array(config.numberOfItems || 6).keys()].map(i => (
           <MyCard key={`card-${i}`} />
         ))}
